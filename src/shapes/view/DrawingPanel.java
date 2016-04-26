@@ -2,10 +2,13 @@ package shapes.view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
+
 import shapes.controller.DrawingController;
 
 public class DrawingPanel extends JPanel
@@ -17,27 +20,18 @@ public class DrawingPanel extends JPanel
 	private JButton drawCircleButton;
 	private JButton drawTriangleButton;
 	private JButton drawEllipseButton;
-//	private JButton drawButton;
-//	private ArrayList <Square> squareList;
-	private ArrayList <Rectangle> rectangleList;
-//	private ArrayList <Circle> circleList;
-//	private ArrayList <Triangle> triangleList;
-//	private ArrayList <> List;
-	
+	private JButton drawPolygonButton;
+	private ShapePanel shapePanel;
 	
 	public DrawingPanel(DrawingController baseController)
 	{
-		drawSquareButton = new JButton("Square");
-		drawRectangleButton = new JButton("Rectangle");
-		drawCircleButton = new JButton("Circle");
-		drawTriangleButton = new JButton("Triangle");
-		drawEllipseButton = new JButton("Ellipse");
-//		drawButton = new JButton("");
-//		squareList = new ArrayList<Square>();
-		rectangleList = new ArrayList<Rectangle>();
-//		circleList = new ArrayList<Circle>();
-//		triangleList = new ArrayList<Triangle>();
-//		List = new ArrayList<>();
+		drawSquareButton = new JButton("Add Square");
+		drawRectangleButton = new JButton("Add Rectangle");
+		drawCircleButton = new JButton("Add Circle");
+		drawTriangleButton = new JButton("Add Triangle");
+		drawEllipseButton = new JButton("Add Ellipse");
+		drawPolygonButton = new JButton("Add Polygon");
+		shapePanel = new ShapePanel();
 		
 		setupPanel();
 		setupLayout();
@@ -52,7 +46,7 @@ public class DrawingPanel extends JPanel
 		this.add(drawCircleButton);
 		this.add(drawTriangleButton);
 		this.add(drawEllipseButton);
-		//this.add(drawButton);
+		this.add(drawPolygonButton);
 	}
 	
 	private void setupLayout()
@@ -66,7 +60,8 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				shapePanel.addSquare();
+				repaint();
 			}
 		});	
 		
@@ -74,12 +69,7 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				int xPosition = (int)(Math.random() * 800);
-				int yPosition = (int)(Math.random() * 800);
-				int width = (int)(Math.random() * 100);
-				int height = (int)(Math.random() * 150);
-				
-				rectangleList.add(new Rectangle(xPosition, yPosition, width, height));
+				shapePanel.addRectangle();
 				repaint();
 			}
 		});	
@@ -88,7 +78,8 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				shapePanel.addCircle();
+				repaint();
 			}
 		});	
 		
@@ -96,7 +87,8 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				shapePanel.addTriangle();
+				repaint();
 			}
 		});	
 		
@@ -104,17 +96,18 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				shapePanel.addEllipse();
+				repaint();
 			}
 		});	
 		
-//		drawButton.addActionListener(new ActionListener()
-//		{
-//			public void actionPerformed(ActionEvent click)
-//			{
-//				
-//			}
-//		});	
+		drawPolygonButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				shapePanel.addPolygon();
+			}
+		});	
 	}
 	
 	@Override
@@ -122,20 +115,10 @@ public class DrawingPanel extends JPanel
 	{
 		super.paintComponent(currentGraphics);
 		Graphics2D mainGraphics = (Graphics2D)currentGraphics;
-		mainGraphics.setColor(Color.WHITE);
-		mainGraphics.setStroke(new BasicStroke(5));
-		mainGraphics.draw(new Rectangle(110,90,100,120));
+//		mainGraphics.setColor(Color.WHITE);
+//		mainGraphics.setStroke(new BasicStroke(5));
+//		mainGraphics.draw(new Rectangle(110,90,100,120));
 		
-		for (Rectangle current : rectangleList)
-		{
-			int randomStroke = (int)(Math.random() * 7);
-			int red = (int)(Math.random() * 256);
-			int blue = (int)(Math.random() * 256);
-			int green = (int)(Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.setStroke(new BasicStroke(randomStroke));
-			
-			mainGraphics.fill(current);
-		}
+		
 	}
 }

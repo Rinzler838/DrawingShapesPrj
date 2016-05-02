@@ -13,7 +13,6 @@ public class DrawingFrame extends JFrame
 	public DrawingFrame(DrawingController baseController)
 	{
 		this.baseController = baseController;
-		shapePanel = new ShapePanel();
 		drawPanel = new DrawingPanel(baseController);
 		graphPanel = new GraphPanel();
 		
@@ -22,8 +21,8 @@ public class DrawingFrame extends JFrame
 	
 	private void setupFrame()
 	{
-		this.setContentPane(graphPanel);
-		this.setSize(800, 800);
+		this.setContentPane(drawPanel);
+		this.setSize(830, 800);
 		this.setTitle("- Drawing Shapes with Duke in Java -");
 		this.setResizable(false);
 		this.setVisible(true);

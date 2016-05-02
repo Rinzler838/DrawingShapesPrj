@@ -21,6 +21,7 @@ public class DrawingPanel extends JPanel
 	private JButton drawTriangleButton;
 	private JButton drawEllipseButton;
 	private JButton drawPolygonButton;
+	private JButton clearButton;
 	private ShapePanel shapePanel;
 	
 	public DrawingPanel(DrawingController baseController)
@@ -31,6 +32,7 @@ public class DrawingPanel extends JPanel
 		drawTriangleButton = new JButton("Add Triangle");
 		drawEllipseButton = new JButton("Add Ellipse");
 		drawPolygonButton = new JButton("Add Polygon");
+		clearButton = new JButton("Clear");
 		shapePanel = new ShapePanel();
 		
 		setupPanel();
@@ -40,13 +42,14 @@ public class DrawingPanel extends JPanel
 	
 	private void setupPanel()
 	{
-		this.setBackground(Color.BLACK);
+		this.setBackground(Color.WHITE);
 		this.add(drawSquareButton);
 		this.add(drawRectangleButton);
 		this.add(drawCircleButton);
 		this.add(drawTriangleButton);
 		this.add(drawEllipseButton);
 		this.add(drawPolygonButton);
+		this.add(clearButton);
 	}
 	
 	private void setupLayout()
@@ -108,6 +111,14 @@ public class DrawingPanel extends JPanel
 				shapePanel.addPolygon();
 			}
 		});	
+		
+		clearButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				shapePanel.clear();
+			}
+		});	
 	}
 	
 	@Override
@@ -121,4 +132,6 @@ public class DrawingPanel extends JPanel
 		
 		
 	}
+	
+	
 }

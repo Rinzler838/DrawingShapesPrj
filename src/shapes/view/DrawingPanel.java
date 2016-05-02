@@ -37,6 +37,7 @@ public class DrawingPanel extends JPanel
 		drawPolygonButton = new JButton("Add Polygon");
 		clearButton = new JButton("Clear");
 		shapePanel = new ShapePanel();
+		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 35, SpringLayout.NORTH, this);
 		
 		setupPanel();
 		setupLayout();
@@ -71,7 +72,6 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, drawEllipseButton, -6, SpringLayout.WEST, drawTriangleButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, drawPolygonButton, 0, SpringLayout.NORTH, drawSquareButton);
 		baseLayout.putConstraint(SpringLayout.WEST, drawPolygonButton, 6, SpringLayout.EAST, clearButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 50, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 0, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 0, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, 0, SpringLayout.EAST, this);
